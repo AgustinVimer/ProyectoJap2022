@@ -5,14 +5,14 @@ let catName = "";
 function mostrarListaProductos(){
 
     let contenidoHtml = "";
-    contenidoHtml += ` <div> <h2> ${catName} </h2></div> `
+    contenidoHtml += ` <div> <h2> ${catName} </h2></div> ` // Para agregarle el título de la categoria a los productos
     
     for(let i = 0; i < productosArray.length; i++){
         let producto = productosArray[i];
 
 
             contenidoHtml += `
-            <div onclick="setCatID(${producto.id})" class="list-group-item list-group-item-action cursor-active">
+            <div class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
                         <img src="${producto.image}" alt="${producto.description}" class="img-thumbnail">
@@ -31,7 +31,8 @@ function mostrarListaProductos(){
             `
         }
 
-        document.getElementById("productos-list").innerHTML = contenidoHtml;
+        document.getElementById("productos-list").innerHTML = contenidoHtml; 
+        //agrego todo lo que puse en contenidoHtml al div con Id productos-list
 }
 
 
