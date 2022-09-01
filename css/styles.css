@@ -189,3 +189,9 @@ a.custom-card:hover {
   color: orange;
 }
 
+#userName {
+  color:rgba(116, 116, 116, 0.527);
+  text-align: center;
+}
+
+

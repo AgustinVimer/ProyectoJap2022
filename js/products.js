@@ -1,5 +1,6 @@
 let productosArray = [];
 let catName = "";
+let catID = "";
 
 
 function mostrarListaProductos(){
@@ -36,9 +37,9 @@ function mostrarListaProductos(){
 }
 
 
-
 document.addEventListener("DOMContentLoaded", function(){
-    getJSONData(PRODUCTS_URL+"101.json").then(function(resultObj){
+    catID=  localStorage.getItem("catID")
+    getJSONData(PRODUCTS_URL+ catID+ ".json").then(function(resultObj){
         if (resultObj.status === "ok"){
             catName= resultObj.data.catName
             productosArray = resultObj.data.products
@@ -47,3 +48,5 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     });
 });
+
+
