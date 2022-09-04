@@ -17,5 +17,3 @@ document.addEventListener("DOMContentLoaded", function(){
 
     
 });
-
-document.getElementById("userName").innerHTML = user ;
