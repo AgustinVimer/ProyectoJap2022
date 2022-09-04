@@ -9,8 +9,10 @@ document.getElementById("iniciarSesion").addEventListener("click", function () {
         alert("Debes completar los campos de usuario y contraseña")
     }
 
-    else {localStorage.setItem("loginUsuario", usuario);
-         window.location.href = "portada.html" }
+    else {
+        localStorage.setItem("loginUsuario", usuario);
+        window.location.href = "portada.html";
+    }
 
 
 });

@@ -50,9 +50,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.getElementById("userName").addEventListener("click", function () {
 
-    let = pregunta = confirm("¿Desea cerrar sesión?");
+    let = cierraSesion = confirm("¿Desea cerrar sesión?");
 
-    if (pregunta) {
+    if (cierraSesion) {
       window.location.href = "index.html"
       localStorage.removeItem("loginUsuario")
     }
