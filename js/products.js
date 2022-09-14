@@ -9,6 +9,13 @@ let minPrecio = undefined;
 let maxPrecio = undefined;
 
 
+
+function setProdID(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
+}
+
+
 function mostrarListaProductos(){
 
     let contenidoHtml = "";
@@ -21,8 +28,8 @@ function mostrarListaProductos(){
         ((maxPrecio == undefined) || (maxPrecio != undefined && parseInt(producto.cost) <= maxPrecio))) {
 
             contenidoHtml += `
-            <div class="list-group-item list-group-item-action cursor-active">
-                <div class="row">
+            <div onclick="setProdID(${producto.id})" class="list-group-item list-group-item-action cursor-active">
+                <div  class="row">
                     <div class="col-3">
                         <img src="${producto.image}" alt="${producto.description}" class="img-thumbnail">
                     </div>
