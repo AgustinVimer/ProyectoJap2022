@@ -31,22 +31,49 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="userName" ></a>
+            <a class="nav-link" id="userName"></a>
+          </li>
+          <li class="nav-item">
+
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <main>
-    <div id="info-producto" class="container"> 
+    <div id="info-producto" class="container">
     </div>
-    
+
     <div class="container text-center">
-      <div id="img-producto" class="row align-items-start"> 
+      <div id="img-producto" class="row align-items-start">
       </div>
     </div>
 
-    <div id="comentarios" class="container"> 
+    <div id="comentarios" class="container">
+
+    </div>
+    <div id="comentarios-nuevos" class="container">
+      <br>
+      <div class="mb-3">
+        <label for="exampleFo>rmControlTextarea1" class="form-label">Añade un comentario:</label>
+        <textarea class="form-control" id="anadeComentario" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Puntaje</label>
+        </div>
+        <select class="custom-select  required" id="inputGroupSelect01">
+          <option value="0" selected disabled="disabled">Puntúa al producto</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-primary" id="enviarComentario">Enviar comentario</button>
+      `
+
     </div>
   </main>
   <footer class="text-muted">
@@ -71,29 +98,30 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-  .checked {
-    color: orange;
-  }
+    .checked {
+      color: orange;
+    }
   </style>
   </head>
+
   <body>
-  
-  
-
-
-
-
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/product-info.js"></script>
 
 
 
 
 
 
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/product-info.js"></script>
 
-</body>
+
+
+
+
+
+
+  </body>
 
 
 
