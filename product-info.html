@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta  http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
 
@@ -30,9 +30,16 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" id="userName"></a>
-          </li>
+          <div class="dropdown" >
+            <button class="btn btn-secondary dropdown-toggle" type="button"id="userName"  data-bs-toggle="dropdown" aria-expanded="false">
+              
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito </a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" id="cerrarSesion">Cerrar sesión</a></li>
+            </ul>
+          </div>
          
         </ul>
       </div>
@@ -70,7 +77,10 @@
         </select>
       </div>
       <button type="button" class="btn btn-primary" id="enviarComentario">Enviar comentario</button>
-      `
+      `<br><br>
+      <div id="info-pRel" class="container">
+        <h4>Productos relacionados:</h4>
+      </div>
 
     </div>
   </main>

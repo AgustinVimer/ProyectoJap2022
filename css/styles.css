@@ -194,4 +194,18 @@ a.custom-card:hover {
   text-align: center;
 }
 
+#info-pRel {
+text-align: center;
+display: table-row;
 
+
+}
+
+.card-img-tos {
+  max-height: 150px;
+  border: 200px;
+  display: table-column;
+  padding-top: 1rem;
+
+
+}

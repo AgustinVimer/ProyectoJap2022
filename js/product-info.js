@@ -3,6 +3,7 @@ let productInfo = "";
 let nameProd = "";
 let listaProductInfoComentarios = [];
 
+
 function mostrarInfoProducto() {
     let imageArray = productInfo.images; 
     let contenidoHtml = "";
@@ -32,7 +33,7 @@ function mostrarInfoProducto() {
 
     let imgHtml = ""
     for (let i = 0; i < imageArray.length; i++) {
-        let imagen = imageArray[i]; console.log(imagen);
+        let imagen = imageArray[i]; 
 
         imgHtml += `
                 
@@ -147,6 +148,40 @@ function cantEstrellas(comentario){
 
     }
 
+    function setProdRelID(id2) {
+        localStorage.setItem("prodID", id2);
+        window.location = "product-info.html"
+        mostrarListaProductos();
+    }
+
+    function mostrarProductosRelacionados(){
+    let productosRelacionados = productInfo.relatedProducts  
+    let pRelHtml = ""
+
+    for (let i = 0; i < productosRelacionados.length; i++) {
+        let pRel = productosRelacionados[i]; console.log(pRel);
+
+        pRelHtml +=/* `
+                
+             
+                <div class="col">
+                    <img onclick="setProdRelID(${productosRelacionados.id})" class="img-rel" src="${pRel.image}" class="bd-placeholder-img card-img-top"> 
+                    <p class="name-rel bd-placeholder-img card-img-top ">${pRel.name}</p>
+                </div>`
+*/
+                `<div class="card">
+                <img onclick="setProdRelID(${pRel.id})" src="${pRel.image}" class="card-img-tos">
+                <div class="card-body">
+                <h5 class="card-title">${pRel.name}</h5>            
+                </div>`
+    }
+
+    document.getElementById("info-pRel").innerHTML += pRelHtml;
+
+
+
+    }
+
    /* function enviarComentario(){
 
         let comen = document.getElementById("exampleFormControlTextarea1").value;
@@ -170,6 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
             nameProd = resultObj.data.name;
             productInfo = resultObj.data;
             mostrarInfoProducto();
+            mostrarProductosRelacionados();
         }
     });
 
