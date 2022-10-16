@@ -209,3 +209,19 @@ display: table-row;
 
 
 }
+
+.imgCarrito{
+
+  width: 90px;
+  height: 60px;
+}
+
+.cant {
+
+  width: 80px;
+}
+
+.moneda {
+
+  width: 90px;
+}
