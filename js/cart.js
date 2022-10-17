@@ -2,28 +2,28 @@ const userID = "25801"
 let articulosArray = []
 
 
-function cambiarInput(idArticulo, costo, nuevaCantidad){
-let costoTotalArticulo = document.getElementById("id"+ idArticulo);
-let nuevoCostoTotal = totalCost (costo, nuevaCantidad);
-costoTotalArticulo.innerHTML = nuevoCostoTotal;
-  
-   } 
+function cambiarInput(idArticulo, costo, nuevaCantidad) {
+    let costoTotalArticulo = document.getElementById("id" + idArticulo);
+    let nuevoCostoTotal = totalCost(costo, nuevaCantidad);
+    costoTotalArticulo.innerHTML = nuevoCostoTotal;
 
-function totalCost(costo, cantidad){
-    let totalCost = costo * cantidad;
+}
+
+function totalCost(costo, nuevacantidad) {
+    let totalCost = costo * nuevacantidad;
     return totalCost;
 }
 
-function mostrarCarrito(){
+function mostrarCarrito() {
 
     let htmlCarrito = "";
-    for(let i = 0; i < articulosArray.length; i++){
+    for (let i = 0; i < articulosArray.length; i++) {
         let articles = articulosArray[i];
 
-        
-    
 
-            htmlCarrito += `
+
+
+        htmlCarrito += `
             <th><img class="imgCarrito" src="${articles.image}"></th>
             <td>${articles.name}</td>
             <td id="unitCost"><b>${articles.currency}</b> ${articles.unitCost}</td>
@@ -35,28 +35,28 @@ function mostrarCarrito(){
             `
 
 
-            
-        }
 
-        document.getElementById("bodyTabla").innerHTML += htmlCarrito;
     }
 
- 
+    document.getElementById("bodyTabla").innerHTML += htmlCarrito;
+}
 
 
-  
 
-document.addEventListener("DOMContentLoaded", function(){
-    getJSONData(CART_INFO_URL+ userID + ".json").then(function(resultObj){
-        if (resultObj.status === "ok"){
-            articulosArray = resultObj.data.articles             
-         localStorage.setItem("listaCarrito",JSON.stringify(articulosArray));
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    getJSONData(CART_INFO_URL + userID + ".json").then(function (resultObj) {
+        if (resultObj.status === "ok") {
+            articulosArray = resultObj.data.articles
+            localStorage.setItem("listaCarrito", JSON.stringify(articulosArray));
             mostrarCarrito()
-           
+
         }
 
-    
-        
+
+
     });
 
 });
