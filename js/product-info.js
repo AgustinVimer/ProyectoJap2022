@@ -3,12 +3,15 @@ let productInfo = "";
 let nameProd = "";
 let listaProductInfoComentarios = [];
 
+function agregarCarrito(){
+    alert("Se agrego el producto correctamente")
+}
 
 function mostrarInfoProducto() {
     let imageArray = productInfo.images; 
     let contenidoHtml = "";
 
-    contenidoHtml += ` <div> <h2><br> ${nameProd} </h2> <hr></div> 
+    contenidoHtml += ` <div> <h2><br> ${nameProd} <button onclick="agregarCarrito()" type="button" class="btn btn-success float-end">Agregar a carrito</button> </h2> <hr> </div> 
     
             <div  class="col">
                 
