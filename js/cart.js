@@ -3,6 +3,7 @@ let articulosArray = [];
 let porcEnvio =0;
 let subtotal =0;
 let costoEnvio =0;
+let innerHTML;
 
 function cambiarInput(indice, nuevaCantidad) {
     /*let costoTotalArticulo = document.getElementById("id" + idArticulo);
@@ -126,6 +127,9 @@ function seleccionarMetodoPago(metodo){
 
     }
 
+    document.getElementById("seleccionar").classList.remove('text-danger');
+    /*lo despinta de rojo a cuando haya seleccionado el metodo de pago*/
+
 
 }
 
@@ -165,6 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("tarjeta").addEventListener("change", function(){
         seleccionarMetodoPago("tarjeta");
 
+
     });
 
     document.getElementById("transferencia").addEventListener("change", function(){
@@ -200,6 +205,25 @@ document.addEventListener("DOMContentLoaded", function () {
             
             document.getElementById("bodyTabla").classList.add('was-validated')
             
+            
+           
+
+            if(form.checkValidity()) {
+                alert("La compra ha sido exitosa");
+                articulosArray = [];
+                localStorage.removeItem("listaCarrito");
+               
+               
+               
+               
+                /* alertas = document.getElementById("alertas").innerHTML
+
+                alertas.innerHTML += `<div class="alert alert-success" role="alert">
+                La compra ha sido exitosa!
+              </div>` 
+              
+              NO LOGRO HACER ENTRAR LA ALERTA DE BOOTSTRAP*/
+            }
              
         }, false)
     })
