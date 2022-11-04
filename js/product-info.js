@@ -2,9 +2,45 @@ let prodID = "";
 let productInfo = "";
 let nameProd = "";
 let listaProductInfoComentarios = [];
+let articulo = {};
+let listaCarrito = [];
+
+function yaEsta(){
+ let esta = false;
+ 
+ for (let i = 0; i < listaCarrito.length; i++) {
+    let art = listaCarrito[i]
+    if(art.id === articulo.id){
+        esta = true
+    }
+ }
+ return esta
+
+}
 
 function agregarCarrito(){
-    alert("Se agrego el producto correctamente")
+    if (localStorage.getItem("listaCarrito")){
+        listaCarrito = JSON.parse(localStorage.getItem("listaCarrito"));
+        if(yaEsta()){
+            let irAlCarrito = confirm("El producto ya esta en el carrito ¿Desea ver su carrito?");
+            if(irAlCarrito){
+                window.location.href = "cart.html"
+            }
+
+        } else {
+            listaCarrito.push(articulo);
+            localStorage.setItem("listaCarrito",JSON.stringify(listaCarrito));
+            alert("El producto se agrego correctamente")
+        }
+     } else {
+        listaCarrito.push(articulo);
+        localStorage.setItem("listaCarrito",JSON.stringify(listaCarrito));
+     }
+
+
+
+
+
 }
 
 function mostrarInfoProducto() {
@@ -32,6 +68,13 @@ function mostrarInfoProducto() {
                    </div>
             </div>
             `
+    articulo.count=1;
+    articulo.currency = productInfo.currency ;
+    articulo.id = productInfo.id;
+    articulo.image = productInfo.images[0];
+    articulo.name = nameProd;
+    articulo.unitCost = productInfo.cost;
+
     document.getElementById("info-producto").innerHTML = contenidoHtml;
 
     let imgHtml = ""
