@@ -44,19 +44,24 @@ let getJSONData = function (url) {
 }
 
 
- document.addEventListener("DOMContentLoaded", function () {
+
+
+document.addEventListener("DOMContentLoaded", function () {
   let user = localStorage.getItem("loginUsuario");
   document.getElementById("userName").innerHTML = user;
 
   document.getElementById("cerrarSesion").addEventListener("click", function () {
 
-    let  cierraSesion = confirm("¿Desea cerrar sesión?");
+    let cierraSesion = confirm("¿Desea cerrar sesión?");
 
     if (cierraSesion) {
       window.location.href = "index.html"
       localStorage.removeItem("loginUsuario")
     }
-    
-    
-  }); 
+
+
+  });
+
+  
 });  
+

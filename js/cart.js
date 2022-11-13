@@ -1,8 +1,8 @@
 const userID = "25801";
 let articulosArray = [];
-let porcEnvio =0;
-let subtotal =0;
-let costoEnvio =0;
+let porcEnvio = 0;
+let subtotal = 0;
+let costoEnvio = 0;
 let innerHTML;
 
 function cambiarInput(indice, nuevaCantidad) {
@@ -10,20 +10,20 @@ function cambiarInput(indice, nuevaCantidad) {
     let nuevoCostoTotal = costoTotal(costo, nuevaCantidad);
     costoTotalArticulo.innerHTML = nuevoCostoTotal;*/
 
-    cambiarLocalStorage(indice,nuevaCantidad);
+    cambiarLocalStorage(indice, nuevaCantidad);
     mostrarCarrito(articulosArray);
 }
 
-function cambiarLocalStorage(indice, cantidad){
-    for(let i=0 ; i < articulosArray.length; i++){
+function cambiarLocalStorage(indice, cantidad) {
+    for (let i = 0; i < articulosArray.length; i++) {
         let articulo = articulosArray[i];
 
-        if (i === indice){
+        if (i === indice) {
             articulo.count = cantidad;
-            
+
         }
     }
-    localStorage.setItem("listaCarrito",JSON.stringify(articulosArray));
+    localStorage.setItem("listaCarrito", JSON.stringify(articulosArray));
 
 }
 
@@ -33,20 +33,20 @@ function costoTotal(costo, cantidad) {
 }
 
 
-function eliminarArt(indice){
-    
-let acepto = confirm("¿Está seguro que desea eliminar el artículo?")
+function eliminarArt(indice) {
 
-if (acepto){
-            
-           articulosArray.splice(indice,1) //borrar  el articulo
-           localStorage.setItem("listaCarrito", JSON.stringify(articulosArray));
-            mostrarCarrito(articulosArray);
-           
-        }
-        
+    let acepto = confirm("¿Está seguro que desea eliminar el artículo?")
+
+    if (acepto) {
+
+        articulosArray.splice(indice, 1) //borrar  el articulo
+        localStorage.setItem("listaCarrito", JSON.stringify(articulosArray));
+        mostrarCarrito(articulosArray);
+
     }
-    
+
+}
+
 
 
 
@@ -80,16 +80,16 @@ function mostrarCarrito(lista) {
 
 
 
-function actualizarSubtotal(){
+function actualizarSubtotal() {
     let sumando = 0;
-    
+
 
     for (let i = 0; i < articulosArray.length; i++) {
-    let articles = articulosArray[i];
-        if (articles.currency === "USD"){
+        let articles = articulosArray[i];
+        if (articles.currency === "USD") {
             sumando += articles.unitCost * articles.count
-        } 
-        else{
+        }
+        else {
             let conversion = Math.round(articles.unitCost / 40);
             sumando += articles.count * conversion
 
@@ -98,11 +98,11 @@ function actualizarSubtotal(){
 
     subtotal = sumando;
     document.getElementById("subtotal").innerHTML = "USD " + subtotal;
-      
-    
+
+
 }
 
-function actualizarCostoEnvio(){
+function actualizarCostoEnvio() {
     let cEnvio = porcEnvio * subtotal
 
     costoEnvio = cEnvio;
@@ -110,40 +110,40 @@ function actualizarCostoEnvio(){
     actualizarTotal();
 }
 
-function actualizarTotal(){
-  
+function actualizarTotal() {
+
     let totaltotal = costoEnvio + subtotal;
 
     document.getElementById("totaltotal").innerHTML = "USD " + totaltotal
 }
 
 
-function seleccionarMetodoPago(metodo){
+function seleccionarMetodoPago(metodo) {
 
-  let htmlParrafo =  document.getElementById("seleccionar");
-  
-    if (metodo === "transferencia"){
+    let htmlParrafo = document.getElementById("seleccionar");
+
+    if (metodo === "transferencia") {
         htmlParrafo.innerHTML = "Forma de pago seleccionada: Transferencia"
-        document.getElementById("numeroCuenta1").setAttribute("required","");
+        document.getElementById("numeroCuenta1").setAttribute("required", "");
         document.getElementById("numeroCuenta1").removeAttribute("disabled")
-        document.getElementById("numeroTarjeta").setAttribute("disabled","")
+        document.getElementById("numeroTarjeta").setAttribute("disabled", "")
         document.getElementById("numeroTarjeta").removeAttribute("required")
-        document.getElementById("codigo").setAttribute("disabled","")
+        document.getElementById("codigo").setAttribute("disabled", "")
         document.getElementById("codigo").removeAttribute("required")
-        document.getElementById("vencimiento").setAttribute("disabled","")
+        document.getElementById("vencimiento").setAttribute("disabled", "")
         document.getElementById("vencimiento").removeAttribute("required")
     }
 
-     else if (metodo === "tarjeta"){
+    else if (metodo === "tarjeta") {
         htmlParrafo.innerHTML = "Forma de pago seleccionada:  Tarjeta de credito"
-        document.getElementById("numeroCuenta1").setAttribute("disabled","");
+        document.getElementById("numeroCuenta1").setAttribute("disabled", "");
         document.getElementById("numeroCuenta1").removeAttribute("required");
         document.getElementById("numeroTarjeta").removeAttribute("disabled")
-        document.getElementById("numeroTarjeta").setAttribute("required","")
+        document.getElementById("numeroTarjeta").setAttribute("required", "")
         document.getElementById("codigo").removeAttribute("disabled")
-        document.getElementById("codigo").setAttribute("required","")
+        document.getElementById("codigo").setAttribute("required", "")
         document.getElementById("vencimiento").removeAttribute("disabled")
-        document.getElementById("vencimiento").setAttribute("required","")
+        document.getElementById("vencimiento").setAttribute("required", "")
 
 
     }
@@ -159,99 +159,99 @@ function seleccionarMetodoPago(metodo){
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    
-    if (localStorage.getItem("listaCarrito")){
+
+    if (localStorage.getItem("listaCarrito")) {
         articulosArray = JSON.parse(localStorage.getItem("listaCarrito"));
         mostrarCarrito(articulosArray);
     } else {
-    
-    getJSONData(CART_INFO_URL + userID + ".json").then(function (resultObj) {
-        if (resultObj.status === "ok") {
-            articulosArray = resultObj.data.articles
-            localStorage.setItem("listaCarrito", JSON.stringify(articulosArray));
-            mostrarCarrito(articulosArray);
-            
 
-        }
-    });
-}
+        getJSONData(CART_INFO_URL + userID + ".json").then(function (resultObj) {
+            if (resultObj.status === "ok") {
+                articulosArray = resultObj.data.articles
+                localStorage.setItem("listaCarrito", JSON.stringify(articulosArray));
+                mostrarCarrito(articulosArray);
 
-    document.getElementById("premium").addEventListener("change", function(){
+
+            }
+        });
+    }
+
+    document.getElementById("premium").addEventListener("change", function () {
         porcEnvio = 0.15;
         actualizarCostoEnvio();
     });
-    
-    document.getElementById("express").addEventListener("change", function(){
+
+    document.getElementById("express").addEventListener("change", function () {
         porcEnvio = 0.07;
         actualizarCostoEnvio();
     });
 
-    document.getElementById("standard").addEventListener("change", function(){
+    document.getElementById("standard").addEventListener("change", function () {
         porcEnvio = 0.05;
         actualizarCostoEnvio();
     });
 
-    document.getElementById("tarjeta").addEventListener("change", function(){
+    document.getElementById("tarjeta").addEventListener("change", function () {
         seleccionarMetodoPago("tarjeta");
 
 
     });
 
-    document.getElementById("transferencia").addEventListener("change", function(){
+    document.getElementById("transferencia").addEventListener("change", function () {
         seleccionarMetodoPago("transferencia");
     });
 
-   /*  let direccion = document.getElementById("calle").value;
-    let numero = document.getElementById("numero").value; */
+    /*  let direccion = document.getElementById("calle").value;
+     let numero = document.getElementById("numero").value; */
     /* let cantidad = parseInt(document.getElementById("cantCarrito").innerText); */
 
 
-   var forms = document.querySelectorAll('.needs-validation')
-   Array.prototype.slice.call(forms)
-   
-    .forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-            /* if (direccion === "" || direccion == undefined || numero ==="" || numero == undefined) {
-                alert("debes completar los campos")
-            } */
-          /*   if ( cantidad <= 1){
-                alert("La cantidad no puede ser menor a uno")
-            } */
+    var forms = document.querySelectorAll('.needs-validation')
+    Array.prototype.slice.call(forms)
 
-            if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-            }
+        .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                /* if (direccion === "" || direccion == undefined || numero ==="" || numero == undefined) {
+                    alert("debes completar los campos")
+                } */
+                /*   if ( cantidad <= 1){
+                      alert("La cantidad no puede ser menor a uno")
+                  } */
+
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
 
 
-            form.classList.add('was-validated')
-            document.getElementById("tipoenvio").classList.add('was-validated')
-            document.getElementById("seleccionar").classList.add('text-danger')
-            
-            document.getElementById("bodyTabla").classList.add('was-validated')
-            
-            
-           
+                form.classList.add('was-validated')
+                document.getElementById("tipoenvio").classList.add('was-validated')
+                document.getElementById("seleccionar").classList.add('text-danger')
 
-            if(form.checkValidity()) {
-                alert("La compra ha sido exitosa");
-                articulosArray = [];
-                localStorage.removeItem("listaCarrito");
-               
-               
-               
-               
-                /* alertas = document.getElementById("alertas").innerHTML
+                document.getElementById("bodyTabla").classList.add('was-validated')
 
-                alertas.innerHTML += `<div class="alert alert-success" role="alert">
-                La compra ha sido exitosa!
-              </div>` 
-              
-              NO LOGRO HACER ENTRAR LA ALERTA DE BOOTSTRAP*/
-            }
-             
-        }, false)
-    })
+
+
+
+                if (form.checkValidity()) {
+                    alert("La compra ha sido exitosa");
+                    articulosArray = [];
+                    localStorage.removeItem("listaCarrito");
+
+
+
+
+                    /* alertas = document.getElementById("alertas").innerHTML
+    
+                    alertas.innerHTML += `<div class="alert alert-success" role="alert">
+                    La compra ha sido exitosa!
+                  </div>` 
+                  
+                  NO LOGRO HACER ENTRAR LA ALERTA DE BOOTSTRAP*/
+                }
+
+            }, false)
+        })
 });
 
 
